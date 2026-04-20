@@ -17,3 +17,5 @@ logs/
 
 # docs
 docs/guides/
+
+/generated/prisma
