@@ -1,6 +1,13 @@
 ---
-name: issue-create
-description: GitHub Issueを作成する。ラベル付きでタスクチケットとして起票
+name: github-issue-create
+description: |
+  GitHub Issueを新規作成するスキル。ラベル付きのタスクチケットとして起票する。
+  以下の場面で発火する:
+  - ユーザーが「Issue作って」「チケット切って」「タスク追加したい」と言ったとき
+  - 作業中に新しいタスクが見つかり「これ別Issueにしよう」と言ったとき
+  - 「TODO」「あとでやる」など将来のタスクを記録したいとき
+  - バグを発見して「これ記録しておきたい」と言ったとき
+  発火しない場面: 既存Issueの話をしているとき、Issueの閲覧だけのとき
 argument-hint: [タイトル]
 allowed-tools: Bash(gh *)
 ---

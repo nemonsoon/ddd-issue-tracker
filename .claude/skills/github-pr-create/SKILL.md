@@ -1,6 +1,12 @@
 ---
-name: pr
-description: GitHub Pull Requestを作成する。ブランチ名からIssue番号を推測しテンプレートに沿って作成
+name: github-pr-create
+description: |
+  GitHub Pull Requestを作成するスキル。テンプレートに沿ってタイトル・本文を生成しPRを起票する。
+  以下の場面で発火する:
+  - ユーザーが「PR作って」「プルリク出して」「レビューに出したい」と言ったとき
+  - 実装が完了し「マージしたい」「mainに入れたい」と言ったとき
+  - ブランチでの作業が完了しレビュー依頼のタイミングになったとき
+  発火しない場面: まだ作業途中のとき、mainブランチにいるとき
 argument-hint: [issue番号]
 allowed-tools: Bash(git *) Bash(gh *)
 ---

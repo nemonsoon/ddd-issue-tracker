@@ -1,6 +1,13 @@
 ---
-name: branch
-description: Issue番号に対応したブランチを命名規則に従って作成する
+name: git-branch-create
+description: |
+  Gitブランチを命名規則に従って作成するスキル。
+  以下の場面で発火する:
+  - ユーザーが「ブランチ作って」「ブランチ切って」と言ったとき
+  - 新しいIssueに着手する宣言があったとき（「Issue #4やる」「次のやつ始める」）
+  - /next スキルの結果としてブランチ作成が必要になったとき
+  - 「作業開始」「着手する」など新しい作業の開始を示す発言があったとき
+  発火しない場面: すでにfeatureブランチにいるとき、ブランチの話題ではないとき
 argument-hint: [type/番号-説明]
 allowed-tools: Bash(git *)
 ---
