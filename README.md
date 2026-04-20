@@ -67,7 +67,7 @@ graph LR
 | カテゴリ | 技術 | 選定理由 |
 |----------|------|----------|
 | 言語 | TypeScript 5.x (strict) | 型安全性の担保 |
-| ランタイム | Node.js 22 LTS | 長期サポート、最新ES機能 |
+| ランタイム | Node.js 24 LTS | 長期サポート、最新ES機能 |
 | フレームワーク | Hono | 軽量・高速・型推論に優れる |
 | ORM | Prisma | 型安全なDB操作、マイグレーション管理 |
 | DB | PostgreSQL 16 (Docker) | 信頼性・拡張性 |
@@ -151,7 +151,7 @@ tests/
 
 ### 前提条件
 
-- Node.js 22+
+- Node.js 24+
 - pnpm 9+
 - Docker / Docker Compose
 
