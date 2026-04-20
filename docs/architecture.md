@@ -34,12 +34,12 @@ graph TD
 
 ## レイヤー責務
 
-| Layer | 位置 | 責務 | 依存先 |
-|-------|------|------|--------|
-| **Domain** | 最内側 | Entity型、Repository interface、ドメインエラー | なし（純粋TypeScript） |
-| **UseCase** | 中間 | ビジネスフロー調整、1ファイル1ユースケース | Domain |
-| **Infrastructure** | 外側 | DB通信、Repository interfaceの実装 | Domain, Prisma |
-| **Presentation** | 外側 | HTTPルーティング、バリデーション、レスポンス整形 | UseCase, Zod |
+| Layer              | 位置   | 責務                                             | 依存先                 |
+| ------------------ | ------ | ------------------------------------------------ | ---------------------- |
+| **Domain**         | 最内側 | Entity型、Repository interface、ドメインエラー   | なし（純粋TypeScript） |
+| **UseCase**        | 中間   | ビジネスフロー調整、1ファイル1ユースケース       | Domain                 |
+| **Infrastructure** | 外側   | DB通信、Repository interfaceの実装               | Domain, Prisma         |
+| **Presentation**   | 外側   | HTTPルーティング、バリデーション、レスポンス整形 | UseCase, Zod           |
 
 ## 依存方向
 
