@@ -5,8 +5,10 @@
 #
 pre-push:
   jobs:
-    - name: packages audit
+    - name: tsc
       run: pnpm run tsc
+    - name: test
+      run: pnpm run test
 
 pre-commit:
   parallel: true

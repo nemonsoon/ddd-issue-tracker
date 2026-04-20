@@ -6,7 +6,8 @@
 		"build": "tsc",
 		"start": "node dist/index.js",
 		"check": "pnpx @biomejs/biome check --write",
-		"tsc": "tsc --noEmit"
+		"tsc": "tsc --noEmit",
+		"test": "vitest"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.19.14",
@@ -17,6 +18,7 @@
 		"@types/node": "^20.11.17",
 		"lefthook": "^2.1.6",
 		"tsx": "^4.7.1",
-		"typescript": "^5.8.3"
+		"typescript": "^5.8.3",
+		"vitest": "^4.1.4"
 	}
 }
