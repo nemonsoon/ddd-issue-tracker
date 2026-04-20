@@ -1,108 +1,122 @@
 # DDD Issue Tracker
 
 TypeScript + Hono + Prisma + PostgreSQL によるIssue Tracker API。  
-DDD（Domain-Driven Design）のレイヤードアーキテクチャを採用し、各層の責務分離を徹底している。
+オニオンアーキテクチャに基づき、ドメインを中心に据えた依存性逆転の原則（DIP）を実践している。
 
-## Architecture
+## アーキテクチャ
+
+### オニオンアーキテクチャ概観
 
 ```mermaid
 graph TD
-    Client[HTTP Client] --> Presentation
-    
-    subgraph Application
-        Presentation[Presentation Layer<br/>Hono + Zod]
-        UseCase[UseCase Layer]
-        Domain[Domain Layer]
-        Infra[Infrastructure Layer<br/>Prisma]
+    subgraph "外側: Infrastructure"
+        DB[(PostgreSQL)]
+        Prisma[Prisma ORM]
     end
-    
-    Infra --> DB[(PostgreSQL)]
-    
-    Presentation --> UseCase
-    UseCase --> Domain
-    Infra -.->|implements| Domain
+
+    subgraph "外側: Presentation"
+        HTTP[Hono + Zod]
+    end
+
+    subgraph "内側: Application"
+        UC[UseCase]
+    end
+
+    subgraph "最内側: Domain"
+        Entity[Entity]
+        Repo[Repository Interface]
+        Err[Domain Errors]
+    end
+
+    HTTP --> UC
+    UC --> Entity
+    UC --> Repo
+    Prisma -.->|implements| Repo
+    Prisma --> DB
 ```
 
-### Dependency Rule
+### 同心円モデル
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#5319E7', 'secondaryColor': '#1D76DB'}}}%%
 graph LR
-    P[presentation] -->|depends on| U[usecase]
-    U -->|depends on| D[domain]
-    I[infra] -.->|implements| D
+    subgraph Onion["依存方向: 外 → 内"]
+        direction LR
+        D["🟣 Domain<br/>(Entity, Repository IF, Errors)"]
+        U["🔵 UseCase<br/>(Application Service)"]
+        I["🔴 Infra / 🟡 Presentation<br/>(Prisma, Hono, Zod)"]
+    end
 
-    style D fill:#5319E7,color:#fff
-    style U fill:#1D76DB,color:#fff
-    style I fill:#D93F0B,color:#fff
-    style P fill:#FBCA04,color:#000
+    I -->|depends on| U
+    U -->|depends on| D
 ```
 
-**依存方向は常に内側（domain）へ向かう。** infra層はdomain層のインターフェースを実装するが、domain層はinfra層を知らない。
+**核心原則**: Domain層は一切の外部依存を持たない。外側の層（Infra / Presentation）が内側のインターフェースに依存する。これにより、DBやフレームワークの差し替えがドメインロジックに影響しない。
 
-### Layer Responsibilities
+### レイヤー責務
 
-| Layer | Responsibility | Dependencies |
-|-------|---------------|--------------|
-| **domain** | Entity型定義、Repositoryインターフェース、ドメインエラー | なし（純粋TypeScript） |
-| **usecase** | ビジネスフローの調整、1ファイル1ユースケース | domain |
-| **infra** | 外部システムとの通信（DB）、Repositoryインターフェースの実装 | domain, Prisma |
-| **presentation** | HTTPルーティング、リクエスト/レスポンス変換、バリデーション | usecase, Zod |
+| Layer | 位置 | 責務 | 依存先 |
+|-------|------|------|--------|
+| **Domain** | 最内側 | Entity型、Repository interface、ドメインエラー | なし（純粋TypeScript） |
+| **UseCase** | 中間 | ビジネスフロー調整、1ファイル1ユースケース | Domain |
+| **Infrastructure** | 外側 | DB通信、Repository interfaceの実装 | Domain, Prisma |
+| **Presentation** | 外側 | HTTPルーティング、バリデーション、レスポンス整形 | UseCase, Zod |
 
-## Tech Stack
+## 技術スタック
 
-| Category | Technology | Rationale |
-|----------|-----------|-----------|
-| Language | TypeScript 5.x (strict) | 型安全性の担保 |
-| Runtime | Node.js 22 LTS | 長期サポート、最新ES機能 |
-| Framework | Hono | 軽量・高速・型推論に優れたWebフレームワーク |
+| カテゴリ | 技術 | 選定理由 |
+|----------|------|----------|
+| 言語 | TypeScript 5.x (strict) | 型安全性の担保 |
+| ランタイム | Node.js 22 LTS | 長期サポート、最新ES機能 |
+| フレームワーク | Hono | 軽量・高速・型推論に優れる |
 | ORM | Prisma | 型安全なDB操作、マイグレーション管理 |
-| Database | PostgreSQL 16 | 信頼性・拡張性 |
-| Validation | Zod | ランタイムバリデーション + 型推論 |
-| Test | Vitest | 高速・ESM native・TypeScriptファーストクラス対応 |
-| Linter/Formatter | Biome | ESLint + Prettierの統合代替、高速 |
-| Package Manager | pnpm | ディスク効率・厳格な依存解決 |
-| DI | Manual Constructor Injection | DIコンテナの複雑性を排除 |
+| DB | PostgreSQL 16 (Docker) | 信頼性・拡張性 |
+| バリデーション | Zod | ランタイム検証 + TypeScript型推論 |
+| テスト | Vitest | 高速・ESM native |
+| Linter/Formatter | Biome | ESLint + Prettier統合代替、高速 |
+| パッケージマネージャ | pnpm | ディスク効率・厳格な依存解決 |
+| DI | 手動コンストラクタ注入 | DIコンテナの複雑性を排除 |
 
-## API Endpoints
+## APIエンドポイント
 
-| Method | Path | Description | Status Codes |
-|--------|------|-------------|--------------|
+| Method | Path | 説明 | Status Codes |
+|--------|------|------|--------------|
 | `POST` | `/issues` | Issue作成 | 201 / 400 |
 | `GET` | `/issues` | Issue一覧取得 | 200 |
 | `GET` | `/issues/:id` | Issue単体取得 | 200 / 404 |
 | `PATCH` | `/issues/:id` | Issue更新 | 200 / 400 / 404 |
 | `DELETE` | `/issues/:id` | Issue削除 | 204 / 404 |
 
-### Query Parameters (GET /issues)
+### クエリパラメータ (GET /issues)
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
+| パラメータ | 型 | デフォルト | 説明 |
+|-----------|------|-----------|------|
 | `status` | `string` | - | `open` \| `closed` でフィルタ |
 | `limit` | `number` | `20` | 取得件数上限 |
 | `offset` | `number` | `0` | オフセット |
 
-## Request / Response Flow
+## リクエスト/レスポンスフロー
 
 ```mermaid
 sequenceDiagram
     participant C as Client
-    participant P as Presentation
+    participant P as Presentation<br/>(Hono)
     participant U as UseCase
-    participant R as Repository
+    participant R as Repository<br/>(Prisma実装)
     participant DB as PostgreSQL
 
     C->>P: HTTP Request
-    P->>P: Zod Validation
-    P->>U: Execute UseCase
-    U->>R: Repository Method Call
-    R->>DB: Prisma Query
+    P->>P: Zod バリデーション
+    P->>U: UseCase実行
+    U->>R: Repository メソッド呼び出し
+    R->>DB: SQL Query
     DB-->>R: Raw Data
     R-->>U: Domain Entity
-    U-->>P: Domain Entity / Error
+    U-->>P: Entity or Domain Error
     P-->>C: HTTP Response (JSON)
 ```
 
-## Directory Structure
+## ディレクトリ構成
 
 ```
 src/
@@ -133,15 +147,15 @@ tests/
 └── integration/           # 統合テスト
 ```
 
-## Setup
+## セットアップ
 
-### Prerequisites
+### 前提条件
 
 - Node.js 22+
 - pnpm 9+
 - Docker / Docker Compose
 
-### Installation
+### インストール
 
 ```bash
 git clone https://github.com/nuko-chan/ddd-issue-tracker.git
@@ -150,44 +164,49 @@ pnpm install
 cp .env.example .env
 ```
 
-### Database
+### データベース起動
 
 ```bash
 docker compose up -d
 pnpm prisma migrate dev
 ```
 
-### Development
+### 開発
 
 ```bash
-pnpm dev          # Start dev server (port 3000)
-pnpm build        # TypeScript compile
+pnpm dev          # 開発サーバー起動 (port 3000)
+pnpm build        # TypeScriptコンパイル
 pnpm lint         # Biome check
-pnpm test         # Run all tests
+pnpm test         # 全テスト実行
 ```
 
-## Design Decisions & Trade-offs
+## 設計判断とトレードオフ
+
+### オニオンアーキテクチャ採用
+
+レイヤードアーキテクチャではなくオニオンアーキテクチャを採用。  
+**理由**: レイヤードでは上位層が下位層に直接依存するため、DB変更がドメインに波及する。オニオンではDomain層が依存の中心となり、InfraがDomainのインターフェースを実装する（依存性逆転）。これによりテスタビリティとドメインの独立性を確保。
 
 ### Anemic Domain Model（Phase 1）
 
 Entityにドメインメソッドを持たせず、型定義のみとした。  
-**理由**: CRUD中心の本アプリではRich Domain Modelの恩恵が薄い。まず層分離の構造を確立し、ドメインロジックが増えた段階でメソッドを追加する方針。
+**理由**: CRUD中心の本フェーズではRich Domain Modelの恩恵が薄い。層分離の構造を確立した後、ドメインロジックが増えた段階でメソッドを追加する方針。
 
 ### DIコンテナ不使用
 
 InversifyなどのDIコンテナを使わず、`container.ts`で手動配線。  
-**理由**: 依存グラフが小規模（Repository 1つ、UseCase 5つ）であり、コンテナの学習コスト・マジック感が利点を上回る。依存関係が増えた場合に導入を検討。
+**理由**: 依存グラフが小規模（Repository 1つ、UseCase 5つ）であり、コンテナのデコレータ・リフレクション等の暗黙的挙動が利点を上回る。規模拡大時に導入を検討。
 
-### status を String 型で保持
+### statusをString型で保持
 
 DBスキーマ上はenum制約を設けず、アプリケーション層のunion type (`"open" | "closed"`) で型安全性を確保。  
-**理由**: PostgreSQL enumはマイグレーションでのALTER TYPEが煩雑。アプリケーションコードで制御する方がスキーマ変更に柔軟。
+**理由**: PostgreSQL enumは`ALTER TYPE`によるマイグレーションが煩雑。アプリケーションコードで制御する方がスキーマ変更に柔軟。
 
 ### テスト戦略: Fake > Mock
 
-モックライブラリ（jest.mock等）を使わず、手書きのFake Repositoryでテスト。  
-**理由**: Fakeはインターフェースの実装であり、テスト対象の振る舞いをより正確に検証できる。モックは実装詳細に結合しやすい。
+モックライブラリを使わず、手書きのFake Repositoryでテスト。  
+**理由**: Fakeはインターフェースの完全な実装であり、テスト対象の振る舞いをより正確に検証できる。モックは実装詳細への結合が起きやすい。
 
-## License
+## ライセンス
 
 MIT
