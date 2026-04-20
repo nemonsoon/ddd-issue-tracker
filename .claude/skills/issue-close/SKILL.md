@@ -2,7 +2,6 @@
 name: issue-close
 description: GitHub Issueを完了にする。PRマージ後やタスク完了時に使用
 argument-hint: <issue番号>
-disable-model-invocation: true
 allowed-tools: Bash(gh *)
 ---
 

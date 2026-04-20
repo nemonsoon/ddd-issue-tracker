@@ -2,7 +2,6 @@
 name: issue-create
 description: GitHub Issueを作成する。ラベル付きでタスクチケットとして起票
 argument-hint: [タイトル]
-disable-model-invocation: true
 allowed-tools: Bash(gh *)
 ---
 

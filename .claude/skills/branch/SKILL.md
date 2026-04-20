@@ -2,7 +2,6 @@
 name: branch
 description: Issue番号に対応したブランチを命名規則に従って作成する
 argument-hint: [type/番号-説明]
-disable-model-invocation: true
 allowed-tools: Bash(git *)
 ---
 

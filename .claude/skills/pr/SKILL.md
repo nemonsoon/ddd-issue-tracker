@@ -2,7 +2,6 @@
 name: pr
 description: GitHub Pull Requestを作成する。ブランチ名からIssue番号を推測しテンプレートに沿って作成
 argument-hint: [issue番号]
-disable-model-invocation: true
 allowed-tools: Bash(git *) Bash(gh *)
 ---
 

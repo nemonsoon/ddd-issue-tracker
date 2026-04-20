@@ -1,7 +1,6 @@
 ---
 name: next
 description: 次に取り組むIssueを確認し、作業準備を整える
-disable-model-invocation: true
 allowed-tools: Bash(gh *) Bash(git *)
 ---
 

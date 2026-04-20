@@ -2,7 +2,6 @@
 name: commit
 description: 変更を論理的な単位でConventional Commits形式でコミットする
 argument-hint: [メッセージ]
-disable-model-invocation: true
 allowed-tools: Bash(git *)
 ---
 
