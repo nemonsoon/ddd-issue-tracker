@@ -14,6 +14,8 @@ pnpm biome check .        # lint
 pnpm biome check --write . # lint + auto fix
 pnpm vitest run           # 全テスト
 pnpm vitest run <path>    # 単体テスト指定実行
+pnpm build                # TypeScriptビルド
+pnpm start                # ビルド後の本番サーバー起動
 ```
 
 ## Architecture
@@ -23,7 +25,7 @@ pnpm vitest run <path>    # 単体テスト指定実行
 `presentation → usecase → domain ← infra`
 
 ```
-src/
+src/               # 現在は main.ts のみ。以下は目標構成:
   domain/         # Entity型, Repository interface, Domain Error
   usecase/        # 1ファイル1ユースケース
   infra/          # Prisma Repository実装
@@ -40,8 +42,8 @@ src/
 
 ## Git Hooks (lefthook)
 
-- **pre-commit**: `pnpm biome check --write`（対象: `*.{js,ts,jsx,tsx,md}`）
-- **pre-push**: `pnpm tsc --noEmit` + `pnpm test`（並列実行）
+- **pre-commit**: `pnpm check`（対象: `*.{js,ts,jsx,tsx,md}`、内部で `@biomejs/biome check --write` を実行）
+- **pre-push**: `pnpm run tsc` + `pnpm test`（並列実行）
 
 ## Environment
 
