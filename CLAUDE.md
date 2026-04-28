@@ -11,7 +11,7 @@ pnpm prisma migrate dev   # マイグレーション実行
 pnpm dev                  # 開発サーバー起動
 pnpm tsc --noEmit         # 型チェック
 pnpm biome check .        # lint
-pnpm biome check --write .# lint + auto fix
+pnpm biome check --write . # lint + auto fix
 pnpm vitest run           # 全テスト
 pnpm vitest run <path>    # 単体テスト指定実行
 ```
@@ -22,11 +22,38 @@ pnpm vitest run <path>    # 単体テスト指定実行
 
 `presentation → usecase → domain ← infra`
 
+```
+src/
+  domain/         # Entity型, Repository interface, Domain Error
+  usecase/        # 1ファイル1ユースケース
+  infra/          # Prisma Repository実装
+  presentation/   # Hono ルーティング + Zod バリデーション
+  container.ts    # 手動DI配線
+  main.ts         # エントリーポイント
+```
+
 詳細: [docs/architecture.md](docs/architecture.md)
 
 ## Design Decisions
 
 詳細: [docs/design-decisions.md](docs/design-decisions.md)
+
+## Git Hooks (lefthook)
+
+- **pre-commit**: `pnpm biome check --write`（対象: `*.{js,ts,jsx,tsx,md}`）
+- **pre-push**: `pnpm tsc --noEmit` + `pnpm test`（並列実行）
+
+## Environment
+
+`.env` に以下を設定（`.env`はgitignore済み）:
+
+```
+DATABASE_URL=postgresql://user:password@localhost:5432/dbname
+```
+
+## Testing
+
+Fake Repository（インターフェースの完全実装）を使う。モックライブラリは不使用。
 
 ## Mentoring Mode
 
