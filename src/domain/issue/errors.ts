@@ -4,3 +4,10 @@ export class IssueNotFoundError extends Error {
 		this.name = "IssueNotFoundError";
 	}
 }
+
+export class InvalidIssueTitleError extends Error {
+	constructor() {
+		super("titleは空にできません");
+		this.name = "InvalidIssueTitleError";
+	}
+}
