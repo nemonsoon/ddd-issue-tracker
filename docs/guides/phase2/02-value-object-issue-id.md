@@ -173,11 +173,11 @@ After:   findById(id: IssueId): Promise<Issue | null>
 
 `tests/domain/issue/issueId.test.ts`:
 
-- 正常系: 文字列から IssueId を生成できる
-- 正常系: `generate()` で新しい IssueId が作られる
-- 異常系: 空文字でエラーが throw される
-- 等価性: 同じ値の IssueId 同士が `equals()` で true を返す
-- 一意性: `generate()` を2回呼ぶと異なる ID が生成される
+- [ ] 正常系: 文字列から IssueId を生成できる
+- [ ] 正常系: `generate()` で新しい IssueId が作られる
+- [ ] 異常系: 空文字でエラーが throw される
+- [ ] 等価性: 同じ値の IssueId 同士が `equals()` で true を返す
+- [ ] 一意性: `generate()` を2回呼ぶと異なる ID が生成される
 
 ### 6. Fake Repository・既存テストを修正する
 

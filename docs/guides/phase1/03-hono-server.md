@@ -14,10 +14,10 @@ pnpm add hono @hono/node-server
 
 `src/main.ts`:
 
-- Hono アプリケーション生成
-- `GET /health` → `{ status: "ok" }` を返すルート
-- `@hono/node-server` の `serve` で起動（port 3000）
-- 起動ログ出力
+- [ ] Hono アプリケーション生成
+- [ ] `GET /health` → `{ status: "ok" }` を返すルート
+- [ ] `@hono/node-server` の `serve` で起動（port 3000）
+- [ ] 起動ログ出力
 
 ### 3. 動作確認
 

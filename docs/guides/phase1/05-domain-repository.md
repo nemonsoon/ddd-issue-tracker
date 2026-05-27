@@ -7,13 +7,13 @@
 ### 1. Repository interface 作成
 
 `src/domain/issue/repository.ts`:
-- `IssueRepository` interface を定義
-- メソッド:
-  - `save(issue): Promise<Issue>` — 新規保存
-  - `findById(id): Promise<Issue | null>` — ID検索
-  - `findAll(filter?): Promise<Issue[]>` — 一覧取得（フィルタ対応）
-  - `update(issue): Promise<Issue>` — 更新
-  - `delete(id): Promise<void>` — 削除
+- [ ] `IssueRepository` interface を定義
+- [ ] メソッド:
+  - [ ] `save(issue): Promise<Issue>` — 新規保存
+  - [ ] `findById(id): Promise<Issue | null>` — ID検索
+  - [ ] `findAll(filter?): Promise<Issue[]>` — 一覧取得（フィルタ対応）
+  - [ ] `update(issue): Promise<Issue>` — 更新
+  - [ ] `delete(id): Promise<void>` — 削除
 
 ### 2. フィルタ型の定義
 

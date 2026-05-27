@@ -13,20 +13,20 @@ mkdir -p src/infra/prisma
 ### 2. PrismaClient 初期化
 
 `src/infra/prisma/client.ts`:
-- PrismaClient のシングルトンインスタンスを export
-- 開発時のホットリロードで複数インスタンスが生まれないよう考慮
+- [ ] PrismaClient のシングルトンインスタンスを export
+- [ ] 開発時のホットリロードで複数インスタンスが生まれないよう考慮
 
 ### 3. PrismaIssueRepository 実装
 
 `src/infra/prisma/issueRepository.ts`:
-- `IssueRepository` interface を import して implements
-- コンストラクタで `PrismaClient` を受け取る
-- 各メソッド実装:
-  - `save`: `prisma.issue.create()`
-  - `findById`: `prisma.issue.findUnique()`
-  - `findAll`: `prisma.issue.findMany()` + where/take/skip
-  - `update`: `prisma.issue.update()`
-  - `delete`: `prisma.issue.delete()`
+- [ ] `IssueRepository` interface を import して implements
+- [ ] コンストラクタで `PrismaClient` を受け取る
+- [ ] 各メソッド実装:
+  - [ ] `save`: `prisma.issue.create()`
+  - [ ] `findById`: `prisma.issue.findUnique()`
+  - [ ] `findAll`: `prisma.issue.findMany()` + where/take/skip
+  - [ ] `update`: `prisma.issue.update()`
+  - [ ] `delete`: `prisma.issue.delete()`
 
 ### 4. 型マッピング
 

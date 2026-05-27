@@ -39,9 +39,9 @@ npx @biomejs/biome init
 ```
 
 `biome.json` で設定する項目:
-- formatter: インデント(tab or space)、行幅
-- linter: recommended ルールセット有効化
-- organizeImports: 有効化
+- [ ] formatter: インデント(tab or space)、行幅
+- [ ] linter: recommended ルールセット有効化
+- [ ] organizeImports: 有効化
 
 ### 4. Vitest 導入
 
@@ -50,8 +50,8 @@ pnpm add -D vitest
 ```
 
 `vitest.config.ts` を作成:
-- テスト対象のglobパターン (`tests/**/*.test.ts`)
-- TypeScriptパス解決（必要なら）
+- [ ] テスト対象のglobパターン (`tests/**/*.test.ts`)
+- [ ] TypeScriptパス解決（必要なら）
 
 ### 5. npm scripts 定義
 

@@ -13,21 +13,21 @@ mkdir -p tests/fakes
 ### 2. FakeIssueRepository 実装
 
 `tests/fakes/fakeIssueRepository.ts`:
-- `IssueRepository` interface をimportして実装する
-- 内部ストレージ: `Map<string, Issue>`
-- 全メソッドをインメモリで実装:
-  - `save`: Map に追加して返す
-  - `findById`: Map.get
-  - `findAll`: Map.values をフィルタ、limit/offset 適用
-  - `update`: Map に上書き
-  - `delete`: Map.delete
+- [ ] `IssueRepository` interface をimportして実装する
+- [ ] 内部ストレージ: `Map<string, Issue>`
+- [ ] 全メソッドをインメモリで実装:
+  - [ ] `save`: Map に追加して返す
+  - [ ] `findById`: Map.get
+  - [ ] `findAll`: Map.values をフィルタ、limit/offset 適用
+  - [ ] `update`: Map に上書き
+  - [ ] `delete`: Map.delete
 
 ### 3. 簡易テストで動作確認
 
 `tests/fakes/fakeIssueRepository.test.ts`:
-- save → findById で取得できること
-- findById で存在しないID → null
-- delete → findById で null
+- [ ] save → findById で取得できること
+- [ ] findById で存在しないID → null
+- [ ] delete → findById で null
 
 ```bash
 pnpm test

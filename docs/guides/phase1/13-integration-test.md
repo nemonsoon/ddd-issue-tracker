@@ -13,16 +13,16 @@ mkdir -p tests/integration
 ### 2. テスト用DB設定
 
 選択肢:
-- **A) テスト用DBを別に用意**（docker-compose に test サービス追加）
-- **B) 同じDBでテスト前にクリーンアップ**
+- [ ] **A) テスト用DBを別に用意**（docker-compose に test サービス追加）
+- [ ] **B) 同じDBでテスト前にクリーンアップ**
 
 最小構成では B で十分。テスト前に `prisma.issue.deleteMany()` を実行。
 
 ### 3. Integration テスト作成
 
 `tests/integration/issue.test.ts`:
-- Hono アプリを直接テスト（`app.request()` メソッド使用、HTTPサーバー起動不要）
-- テストフロー:
+- [ ] Hono アプリを直接テスト（`app.request()` メソッド使用、HTTPサーバー起動不要）
+- [ ] テストフロー:
   1. `POST /issues` → 201、レスポンスに id あり
   2. `GET /issues/:id` → 200、title一致
   3. `PATCH /issues/:id` → 200、status変更確認
@@ -33,9 +33,9 @@ mkdir -p tests/integration
 ### 4. Vitest設定
 
 integration テスト用に:
-- タイムアウトを長めに設定（DB接続あるため）
-- `beforeAll` で DB接続、`afterAll` で切断
-- `beforeEach` でテーブルクリーンアップ
+- [ ] タイムアウトを長めに設定（DB接続あるため）
+- [ ] `beforeAll` で DB接続、`afterAll` で切断
+- [ ] `beforeEach` でテーブルクリーンアップ
 
 ### 5. 実行
 

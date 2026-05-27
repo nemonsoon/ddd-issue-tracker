@@ -7,8 +7,8 @@
 ### 1. UpdateIssue UseCase
 
 `src/usecase/issue/updateIssue.ts`:
-- 入力: `{ id: string, title?: string, description?: string, status?: "open" | "closed" }`
-- 処理:
+- [ ] 入力: `{ id: string, title?: string, description?: string, status?: "open" | "closed" }`
+- [ ] 処理:
   1. `repository.findById(id)` で既存Issue取得
   2. 見つからない → `IssueNotFoundError`
   3. 渡されたフィールドのみ上書き（部分更新）
@@ -18,8 +18,8 @@
 ### 2. DeleteIssue UseCase
 
 `src/usecase/issue/deleteIssue.ts`:
-- 入力: `{ id: string }`
-- 処理:
+- [ ] 入力: `{ id: string }`
+- [ ] 処理:
   1. `repository.findById(id)` で存在確認
   2. 見つからない → `IssueNotFoundError`
   3. `repository.delete(id)` で削除
@@ -28,13 +28,13 @@
 ### 3. 単体テスト
 
 `tests/usecase/issue/updateIssue.test.ts`:
-- 正常系: status を "open" → "closed" に更新
-- 正常系: title のみ部分更新（他フィールドは変わらない）
-- 異常系: 存在しないID
+- [ ] 正常系: status を "open" → "closed" に更新
+- [ ] 正常系: title のみ部分更新（他フィールドは変わらない）
+- [ ] 異常系: 存在しないID
 
 `tests/usecase/issue/deleteIssue.test.ts`:
-- 正常系: 削除後に findById → null
-- 異常系: 存在しないID
+- [ ] 正常系: 削除後に findById → null
+- [ ] 異常系: 存在しないID
 
 ```bash
 pnpm test

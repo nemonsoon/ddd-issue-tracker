@@ -43,19 +43,19 @@ listIssuesQuerySchema = z.object({
 ### 3. Honoコントローラ
 
 `src/presentation/http/issueController.ts`:
-- Hono の Router（`new Hono()`）を作成
-- 各エンドポイント:
-  - `POST /issues` → Zod でバリデーション → CreateIssue UseCase → 201
-  - `GET /issues` → クエリパース → ListIssues UseCase → 200
-  - `GET /issues/:id` → GetIssue UseCase → 200 / 404
-  - `PATCH /issues/:id` → Zod でバリデーション → UpdateIssue UseCase → 200 / 404
-  - `DELETE /issues/:id` → DeleteIssue UseCase → 204 / 404
+- [ ] Hono の Router（`new Hono()`）を作成
+- [ ] 各エンドポイント:
+  - [ ] `POST /issues` → Zod でバリデーション → CreateIssue UseCase → 201
+  - [ ] `GET /issues` → クエリパース → ListIssues UseCase → 200
+  - [ ] `GET /issues/:id` → GetIssue UseCase → 200 / 404
+  - [ ] `PATCH /issues/:id` → Zod でバリデーション → UpdateIssue UseCase → 200 / 404
+  - [ ] `DELETE /issues/:id` → DeleteIssue UseCase → 204 / 404
 
 ### 4. エラーハンドリング
 
-- Zod バリデーション失敗 → 400 + エラー詳細
-- `IssueNotFoundError` → 404 + メッセージ
-- 予期しないエラー → 500
+- [ ] Zod バリデーション失敗 → 400 + エラー詳細
+- [ ] `IssueNotFoundError` → 404 + メッセージ
+- [ ] 予期しないエラー → 500
 
 ### 5. 確認
 
