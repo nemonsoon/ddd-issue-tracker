@@ -1,6 +1,6 @@
 # 02: Value Object — IssueId
 
-対応Issue: #16
+対応Issue: #24
 
 ---
 

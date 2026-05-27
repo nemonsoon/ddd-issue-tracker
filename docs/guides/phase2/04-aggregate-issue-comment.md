@@ -1,6 +1,6 @@
 # 04: Aggregate — Issue + Comment
 
-対応Issue: #18
+対応Issue: #26
 
 ---
 

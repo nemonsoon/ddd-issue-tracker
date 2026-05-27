@@ -1,6 +1,6 @@
 # 03: Rich Entity — ステータス遷移
 
-対応Issue: #17
+対応Issue: #25
 
 ---
 

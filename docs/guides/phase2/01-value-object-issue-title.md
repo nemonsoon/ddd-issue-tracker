@@ -1,6 +1,6 @@
 # 01: Value Object — IssueTitle
 
-対応Issue: #15
+対応Issue: #23
 
 ---
 

@@ -1,6 +1,6 @@
 # Phase 2: DDD 戦術パターン
 
-Issue #15〜#19 に対応するガイド集。
+Issue #23〜#27 に対応するガイド集。
 Phase 1 で作ったコードをリファクタリングし、DDDの戦術パターンを導入することが目的。
 
 ## 前提
@@ -13,11 +13,11 @@ Phase 1 で作ったコードをリファクタリングし、DDDの戦術パタ
 
 | # | ファイル | テーマ | 対応Issue |
 |---|---------|--------|----------|
-| 01 | [01-value-object-issue-title.md](01-value-object-issue-title.md) | Value Object: IssueTitle | #15 |
-| 02 | [02-value-object-issue-id.md](02-value-object-issue-id.md) | Value Object: IssueId | #16 |
-| 03 | [03-rich-entity-status.md](03-rich-entity-status.md) | Rich Entity: ステータス遷移 | #17 |
-| 04 | [04-aggregate-issue-comment.md](04-aggregate-issue-comment.md) | Aggregate: Issue + Comment | #18 |
-| 05 | [05-phase2-test-refactoring.md](05-phase2-test-refactoring.md) | テスト・リファクタリング整備 | #19 |
+| 01 | [01-value-object-issue-title.md](01-value-object-issue-title.md) | Value Object: IssueTitle | #23 |
+| 02 | [02-value-object-issue-id.md](02-value-object-issue-id.md) | Value Object: IssueId | #24 |
+| 03 | [03-rich-entity-status.md](03-rich-entity-status.md) | Rich Entity: ステータス遷移 | #25 |
+| 04 | [04-aggregate-issue-comment.md](04-aggregate-issue-comment.md) | Aggregate: Issue + Comment | #26 |
+| 05 | [05-phase2-test-refactoring.md](05-phase2-test-refactoring.md) | テスト・リファクタリング整備 | #27 |
 
 ## 学習の進め方
 
