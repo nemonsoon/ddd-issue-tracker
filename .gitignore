@@ -15,8 +15,6 @@ logs/
 # misc
 .DS_Store
 
-# docs
-docs/guides/
 
 /generated/prisma
 
