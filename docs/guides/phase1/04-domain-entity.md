@@ -13,17 +13,17 @@ mkdir -p src/domain/issue
 ### 2. Entity型定義
 
 `src/domain/issue/entity.ts`:
-- [ ] `Issue` 型（type or interface）を定義
-- [ ] フィールド: id, title, description, status, createdAt, updatedAt
-- [ ] `status` は `"open" | "closed"` のunion typeにする（DBはstringだがドメインでは制約する）
-- [ ] Prismaの型は一切importしない
+- [x] `Issue` 型（type or interface）を定義
+- [x] フィールド: id, title, description, status, createdAt, updatedAt
+- [x] `status` は `"open" | "closed"` のunion typeにする（DBはstringだがドメインでは制約する）
+- [x] Prismaの型は一切importしない
 
 ### 3. ドメインエラー定義
 
 `src/domain/issue/errors.ts`:
-- [ ] `IssueNotFoundError` — 指定IDのIssueが見つからない
-- [ ] Error クラスを継承したカスタムエラー
-- [ ] `name` プロパティでエラー種別を識別可能にする
+- [x] `IssueNotFoundError` — 指定IDのIssueが見つからない
+- [x] Error クラスを継承したカスタムエラー
+- [x] `name` プロパティでエラー種別を識別可能にする
 
 ### 4. 確認
 
