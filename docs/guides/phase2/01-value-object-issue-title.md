@@ -154,10 +154,10 @@ findByTitle(issue.id); // id を渡してしまった！
 
 `src/domain/issue/issueTitle.ts`:
 
-- クラスとして実装する
-- コンストラクタで自己検証（空文字チェック、trim）
-- `value` プロパティで内部の文字列を取得できるようにする
-- 不変にする（`readonly`）
+- [ ] クラスとして実装する
+- [ ] コンストラクタで自己検証（空文字チェック、trim）
+- [ ] `value` プロパティで内部の文字列を取得できるようにする
+- [ ] 不変にする（`readonly`）
 
 ```
 ┌─────────────────────────────────────┐
@@ -188,11 +188,11 @@ IssueTitle のコンストラクタが不正な値を弾いてくれる。
 
 `tests/domain/issue/issueTitle.test.ts`:
 
-- 正常系: 有効なタイトル文字列で作成できる
-- 正常系: 前後の空白が trim される
-- 異常系: 空文字で `InvalidIssueTitleError` が throw される
-- 異常系: 空白のみで `InvalidIssueTitleError` が throw される
-- 等価性: 同じ値の IssueTitle 同士が `equals()` で true を返す
+- [ ] 正常系: 有効なタイトル文字列で作成できる
+- [ ] 正常系: 前後の空白が trim される
+- [ ] 異常系: 空文字で `InvalidIssueTitleError` が throw される
+- [ ] 異常系: 空白のみで `InvalidIssueTitleError` が throw される
+- [ ] 等価性: 同じ値の IssueTitle 同士が `equals()` で true を返す
 
 既存の UseCase テストも修正する（IssueTitle を使うように）。
 

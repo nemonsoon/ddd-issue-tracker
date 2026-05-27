@@ -7,10 +7,10 @@
 ### 1. Docker Compose 作成
 
 `docker-compose.yml`:
-- PostgreSQL 16 イメージ
-- ポート: `5432:5432`
-- 環境変数: `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB`
-- volume でデータ永続化
+- [x] PostgreSQL 16 イメージ
+- [x] ポート: `5432:5432`
+- [x] 環境変数: `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB`
+- [x] volume でデータ永続化
 
 ### 2. 環境変数ファイル
 
@@ -35,12 +35,12 @@ npx prisma init
 
 `prisma/schema.prisma` にIssueモデルを記述:
 
-- `id`: String, cuid, @id
-- `title`: String
-- `description`: String? (nullable)
-- `status`: String, default "open"
-- `createdAt`: DateTime, default now()
-- `updatedAt`: DateTime, @updatedAt
+- [x] `id`: String, cuid, @id
+- [x] `title`: String
+- [x] `description`: String? (nullable)
+- [x] `status`: String, default "open"
+- [x] `createdAt`: DateTime, default now()
+- [x] `updatedAt`: DateTime, @updatedAt
 
 ### 5. マイグレーション実行
 
