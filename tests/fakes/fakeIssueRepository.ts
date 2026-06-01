@@ -26,6 +26,7 @@ export class FakeIssueRepository implements IssueRepository {
 		if (filter?.status) {
 			result = result.filter((issue) => issue.status === filter.status);
 		}
+		result.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 		if (filter?.offset) {
 			result = result.slice(filter.offset);
 		}
