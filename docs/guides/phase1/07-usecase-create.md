@@ -14,10 +14,10 @@ mkdir -p src/usecase/issue tests/usecase/issue
 
 `src/usecase/issue/createIssue.ts`:
 
-- クラスまたは関数で実装
-- コンストラクタ（またはファクトリ引数）で `IssueRepository` を受け取る
-- 入力: `{ title: string, description?: string }`
-- 処理:
+- [x] クラスまたは関数で実装
+- [x] コンストラクタ（またはファクトリ引数）で `IssueRepository` を受け取る
+- [x] 入力: `{ title: string, description?: string }`
+- [x] 処理:
   1. title のバリデーション（空文字チェック）
   2. Issue オブジェクト生成（id生成、status: "open"、タイムスタンプ）
   3. repository.save() で保存
@@ -25,17 +25,17 @@ mkdir -p src/usecase/issue tests/usecase/issue
 
 ### 3. ID生成
 
-- `cuid` や `crypto.randomUUID()` を使う
-- Node.js 組み込みの `crypto.randomUUID()` が最もシンプル
-- ただし Prisma 側で `@default(cuid())` を使うなら、UseCase で生成するか DB に任せるか判断が必要
+- [x] `cuid` や `crypto.randomUUID()` を使う
+- [x] Node.js 組み込みの `crypto.randomUUID()` が最もシンプル
+- [x] ただし Prisma 側で `@default(cuid())` を使うなら、UseCase で生成するか DB に任せるか判断が必要
 
 ### 4. 単体テスト
 
 `tests/usecase/issue/createIssue.test.ts`:
 
-- FakeIssueRepository を注入
-- 正常系: title を渡して Issue が返ること、status が "open" であること
-- 異常系: title が空文字でエラーが throw されること
+- [x] FakeIssueRepository を注入
+- [x] 正常系: title を渡して Issue が返ること、status が "open" であること
+- [x] 異常系: title が空文字でエラーが throw されること
 
 ```bash
 pnpm test

@@ -200,7 +200,7 @@ const updated = {
 
 `src/domain/issue/errors.ts` に追加:
 
-- `InvalidStatusTransitionError`: 不正なステータス遷移を表すエラー
+- [ ] `InvalidStatusTransitionError`: 不正なステータス遷移を表すエラー
   - メッセージ例: `Cannot transition from "closed" to "closed"`
 
 ### 3. UseCase を修正する
@@ -217,11 +217,11 @@ UseCase は Entity に「何をしたいか」を伝えるだけ。
 
 `tests/domain/issue/entity.test.ts`:
 
-- 正常系: open な Issue を close() できる
-- 正常系: closed な Issue を reopen() できる
-- 異常系: すでに closed な Issue を close() → エラー
-- 異常系: すでに open な Issue を reopen() → エラー
-- 生成: `Issue.create()` で status が "open" になる
+- [ ] 正常系: open な Issue を close() できる
+- [ ] 正常系: closed な Issue を reopen() できる
+- [ ] 異常系: すでに closed な Issue を close() → エラー
+- [ ] 異常系: すでに open な Issue を reopen() → エラー
+- [ ] 生成: `Issue.create()` で status が "open" になる
 
 ### 5. create() と reconstruct() の使い分けを反映する
 

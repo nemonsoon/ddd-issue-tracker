@@ -7,8 +7,8 @@
 ### 1. container.ts 作成
 
 `src/container.ts`:
-- 全依存関係を組み立てる単一ファイル
-- 組み立て順序:
+- [ ] 全依存関係を組み立てる単一ファイル
+- [ ] 組み立て順序:
   1. PrismaClient 生成
   2. PrismaIssueRepository 生成（PrismaClient を注入）
   3. 各 UseCase 生成（Repository を注入）
@@ -18,9 +18,9 @@
 ### 2. main.ts 更新
 
 `src/main.ts`:
-- container から controller を import
-- `app.route("/", controller)` でマウント
-- ヘルスチェックはそのまま残す
+- [ ] container から controller を import
+- [ ] `app.route("/", controller)` でマウント
+- [ ] ヘルスチェックはそのまま残す
 
 ### 3. 動作確認
 

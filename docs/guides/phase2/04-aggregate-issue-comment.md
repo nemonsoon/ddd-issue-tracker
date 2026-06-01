@@ -193,9 +193,9 @@ Aggregate（集約）とは、**複数のオブジェクトをひとまとめに
 └───────────────────────────────────┘
 ```
 
-- Comment は Issue の子エンティティ
-- Comment は Issue を経由してのみ操作される
-- CommentRepository は作らない（Issue と一緒に保存される）
+- [ ] Comment は Issue の子エンティティ
+- [ ] Comment は Issue を経由してのみ操作される
+- [ ] CommentRepository は作らない（Issue と一緒に保存される）
 
 ### 2. Issue に Comment 管理メソッドを追加する
 
@@ -228,17 +228,17 @@ Comment 用の別 Repository は作らない。
 
 ### 4. ドメインエラーを追加する
 
-- `CannotCommentOnClosedIssueError`: closed な Issue にコメントしようとした
+- [ ] `CannotCommentOnClosedIssueError`: closed な Issue にコメントしようとした
 
 ### 5. テストを書く
 
 `tests/domain/issue/entity.test.ts` に追加:
-- 正常系: open な Issue にコメントを追加できる
-- 正常系: 追加したコメントが getComments() で取得できる
-- 異常系: closed な Issue にコメント追加 → エラー
+- [ ] 正常系: open な Issue にコメントを追加できる
+- [ ] 正常系: 追加したコメントが getComments() で取得できる
+- [ ] 異常系: closed な Issue にコメント追加 → エラー
 
 `tests/fakes/fakeIssueRepository.test.ts` を修正:
-- Issue + Comment がまとめて保存・取得されることを確認
+- [ ] Issue + Comment がまとめて保存・取得されることを確認
 
 ### 6. Fake Repository を修正する
 

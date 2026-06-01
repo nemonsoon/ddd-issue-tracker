@@ -17,3 +17,5 @@ logs/
 
 
 /generated/prisma
+
+.claude
