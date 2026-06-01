@@ -32,7 +32,7 @@
 
 - [x] 正常系: 複数Issue登録 → 全件取得
 - [x] フィルタ: status指定で絞り込み
-- [ ] ページネーション: limit/offset の動作
+- [x] ページネーション: limit/offset の動作
 
 ```bash
 pnpm test
