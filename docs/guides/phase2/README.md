@@ -18,6 +18,7 @@ Phase 1 で作ったコードをリファクタリングし、DDDの戦術パタ
 | 03 | [03-rich-entity-status.md](03-rich-entity-status.md) | Rich Entity: ステータス遷移 | #25 |
 | 04 | [04-aggregate-issue-comment.md](04-aggregate-issue-comment.md) | Aggregate: Issue + Comment | #26 |
 | 05 | [05-phase2-test-refactoring.md](05-phase2-test-refactoring.md) | テスト・リファクタリング整備 | #27 |
+| 06 | 06-domain-event.md（新設予定） | ドメインイベント: 集約から発行する（Phase 3 の前提） | #29 |
 
 ## 学習の進め方
 
@@ -29,7 +30,7 @@ Phase 1 で作ったコードをリファクタリングし、DDDの戦術パタ
 
 ## 完了条件
 
-- Value Object / Rich Entity / Aggregate を導入済み
-- 各パターンを「なぜ必要か」含めて自分の言葉で説明できる
+- Value Object / Rich Entity / Aggregate / ドメインイベント を導入済み
+- 各パターンで [2つの合格条件](../../learning-method.md#2-合格条件2つ測れる形にする)（①再説明できる ②最小実装が動く）を満たす
 - 全テストが通る
 - 依存方向が守られている
