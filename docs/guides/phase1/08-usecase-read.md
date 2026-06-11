@@ -32,7 +32,7 @@
 
 - [x] 正常系: 複数Issue登録 → 全件取得
 - [x] フィルタ: status指定で絞り込み
-- [ ] ページネーション: limit/offset の動作
+- [x] ページネーション: limit/offset の動作
 
 ```bash
 pnpm test
@@ -40,7 +40,7 @@ pnpm test
 
 ## 設計ポイント
 
-- GetIssue で「見つからない」は **ドメインエラー**（IssueNotFoundError）
+- GetIssue で「見つからない」は **アプリケーション（UseCase）エラー**（`IssueNotFoundError`、`src/usecase/issue/errors.ts`）。ドメインエラーではない（理由は [design-decisions.md](../../design-decisions.md)「エラーの層配置と『見つからない』の扱い」）
 - ListIssues で結果0件は **正常系**（空配列を返す）
 - この違いを意識する: 「存在しないこと」がエラーかどうかは文脈による
 
