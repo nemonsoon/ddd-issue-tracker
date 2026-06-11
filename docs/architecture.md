@@ -37,7 +37,7 @@ graph TD
 | Layer              | 位置   | 責務                                             | 依存先                 |
 | ------------------ | ------ | ------------------------------------------------ | ---------------------- |
 | **Domain**         | 最内側 | Entity型、Repository interface、ドメインエラー   | なし（純粋TypeScript） |
-| **UseCase**        | 中間   | ビジネスフロー調整、1ファイル1ユースケース       | Domain                 |
+| **UseCase**        | 中間   | ビジネスフロー調整、アプリケーションエラー（IssueNotFound等）、1ファイル1ユースケース | Domain                 |
 | **Infrastructure** | 外側   | DB通信、Repository interfaceの実装               | Domain, Prisma         |
 | **Presentation**   | 外側   | HTTPルーティング、バリデーション、レスポンス整形 | UseCase, Zod           |
 
@@ -74,6 +74,6 @@ sequenceDiagram
     R->>DB: SQL Query
     DB-->>R: Raw Data
     R-->>U: Domain Entity
-    U-->>P: Entity or Domain Error
+    U-->>P: Entity or Error (アプリ/ドメイン)
     P-->>C: HTTP Response (JSON)
 ```
