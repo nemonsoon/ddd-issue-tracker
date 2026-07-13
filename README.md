@@ -104,6 +104,7 @@ prisma/
 docs/
 ├── learning-method.md   # 学習方法の正典（予測先行・合格条件・学習ログ）
 ├── roadmap.md       # 学習ロードマップ（Phase 1〜3）
+├── handoff.md       # 現在地と次の一手（セッション引き継ぎ）
 ├── architecture.md  # アーキテクチャ詳細
 ├── design-decisions.md  # 設計判断とトレードオフ
 ├── guides/          # 実装ガイド（Issue 単位）
@@ -114,6 +115,7 @@ docs/
 
 - [学習方法](docs/learning-method.md) — 予測先行・2つの合格条件・学習ログ（このリポの根幹）
 - [学習ロードマップ](docs/roadmap.md) — Phase 1〜3 の学ぶ順序・ゴール・ペースの目安
+- [引き継ぎ](docs/handoff.md) — 現在地と次の一手（作業を再開するときの入口）
 - [アーキテクチャ](docs/architecture.md) — オニオンアーキテクチャの詳細とリクエストフロー
 - [設計判断](docs/design-decisions.md) — 各技術選定のトレードオフ
 - [ブランチ命名規則](docs/branch-naming.md) — Git ブランチの命名ルール
