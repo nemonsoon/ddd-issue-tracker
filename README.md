@@ -102,9 +102,12 @@ prisma/
 ├── schema.prisma    # DB スキーマ定義
 └── migrations/      # マイグレーション履歴
 docs/
+├── learning-method.md   # 学習方法の正典（予測先行・合格条件・学習ログ）
+├── roadmap.md       # 学習ロードマップ（Phase 1〜3）
 ├── architecture.md  # アーキテクチャ詳細
 ├── design-decisions.md  # 設計判断とトレードオフ
-└── guides/          # 実装ガイド（Issue 単位）
+├── guides/          # 実装ガイド（Issue 単位）
+└── learning-log/    # 学習ログ（Issue ごとの予測・再説明）
 ```
 
 ## 📚 設計ドキュメント
@@ -115,3 +118,4 @@ docs/
 - [設計判断](docs/design-decisions.md) — 各技術選定のトレードオフ
 - [ブランチ命名規則](docs/branch-naming.md) — Git ブランチの命名ルール
 - [実装ガイド](docs/guides/) — Issue 単位のステップバイステップガイド
+- [学習ログ](docs/learning-log/) — Issue ごとの「予測」「再説明」の記録（合格条件①の証拠）
