@@ -1,7 +1,6 @@
 // FakeIssueRepositoryを実装
 
 import type { Issue } from "../../src/domain/issue/entity.js";
-import { IssueNotFoundError } from "../../src/domain/issue/errors.js";
 import type {
 	IssueFilter,
 	IssueRepository,
@@ -37,17 +36,11 @@ export class FakeIssueRepository implements IssueRepository {
 	}
 
 	async update(issue: Issue): Promise<Issue> {
-		const existingIssue = await this.findById(issue.id);
-		if (!existingIssue) throw new IssueNotFoundError(issue.id);
 		this.issues.set(issue.id, issue);
 		return issue;
 	}
 
 	async delete(id: string): Promise<void> {
-		const existingIssue = await this.findById(id);
-		if (!existingIssue) {
-			throw new IssueNotFoundError(id);
-		}
 		this.issues.delete(id);
 		return;
 	}
