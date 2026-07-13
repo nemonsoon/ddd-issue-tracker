@@ -45,6 +45,9 @@ describe("updateIssueUsecase", () => {
 		});
 
 		expect(result.title).toBe("test title2");
+		expect(result.description).toBe("test description");
+		expect(result.status).toBe("open");
+		expect(result.createdAt).toEqual(issue.createdAt);
 	});
 	test("存在しないID", async () => {
 		const repo = new FakeIssueRepository();
