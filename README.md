@@ -102,22 +102,22 @@ prisma/
 ├── schema.prisma    # DB スキーマ定義
 └── migrations/      # マイグレーション履歴
 docs/
-├── learning-method.md   # 学習方法の正典（予測先行・合格条件・学習ログ）
+├── learning-method.md   # 学習方法の正典（答え先出し・段階的な支援・確認課題）
 ├── roadmap.md       # 学習ロードマップ（Phase 1〜3）
 ├── handoff.md       # 現在地と次の一手（セッション引き継ぎ）
 ├── architecture.md  # アーキテクチャ詳細
 ├── design-decisions.md  # 設計判断とトレードオフ
 ├── guides/          # 実装ガイド（Issue 単位）
-└── learning-log/    # 学習ログ（Issue ごとの予測・再説明）
+└── learning-log/    # 学習ログ（Issue ごとの再説明・応用問題・利用した支援）
 ```
 
 ## 📚 設計ドキュメント
 
-- [学習方法](docs/learning-method.md) — 予測先行・2つの合格条件・学習ログ（このリポの根幹）
+- [学習方法](docs/learning-method.md) — 答え先出し、段階的なヒント、小さな応用問題、Phase確認課題
 - [学習ロードマップ](docs/roadmap.md) — Phase 1〜3 の学ぶ順序・ゴール・ペースの目安
 - [引き継ぎ](docs/handoff.md) — 現在地と次の一手（作業を再開するときの入口）
 - [アーキテクチャ](docs/architecture.md) — オニオンアーキテクチャの詳細とリクエストフロー
 - [設計判断](docs/design-decisions.md) — 各技術選定のトレードオフ
 - [ブランチ命名規則](docs/branch-naming.md) — Git ブランチの命名ルール
 - [実装ガイド](docs/guides/) — Issue 単位のステップバイステップガイド
-- [学習ログ](docs/learning-log/) — Issue ごとの「予測」「再説明」の記録（合格条件①の証拠）
+- [学習ログ](docs/learning-log/) — Issue ごとの再説明、小さな応用問題、利用した支援の記録
