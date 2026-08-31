@@ -5,7 +5,7 @@
 		"dev": "tsx watch src/main.ts",
 		"build": "tsc",
 		"start": "node dist/main.js",
-		"check": "pnpx @biomejs/biome check --write",
+		"check": "biome check --write",
 		"tsc": "tsc --noEmit",
 		"test": "vitest run"
 	},
