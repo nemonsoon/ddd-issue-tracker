@@ -4,7 +4,7 @@
 	"scripts": {
 		"dev": "tsx watch src/main.ts",
 		"build": "tsc",
-		"start": "node dist/main.js",
+		"start": "node dist/src/main.js",
 		"check": "biome check --write",
 		"tsc": "tsc --noEmit",
 		"test": "vitest run"
