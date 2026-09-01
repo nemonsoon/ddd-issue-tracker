@@ -4,7 +4,6 @@
 
 > 📚 これは**設計判断を自分の言葉で説明できる状態**になるための学習用リポジトリ（道場）。
 > 目的は、設計判断を自分の言葉で説明できる状態になること。
-> 進め方の正典は [学習方法](docs/learning-method.md)。何を・どの順で学ぶかは [学習ロードマップ](docs/roadmap.md)。
 
 ## 📌 到達点
 
@@ -41,8 +40,6 @@ Event Store・Projector・replay・結果整合性という概念は案件と独
 
 ### 判定の参照先
 
-- [検討メモ](docs/learning-plan-notes.md) — 判定の経緯、保留を解く条件、この判定で失うもの、未確認のまま残すこと
-- 外部調査の全体と出典一覧は手元のノートに保存している（論争の切り分け、CQRS とイベントソーシングのネック、データベース側の中間解）
 - [CQRS](https://martinfowler.com/bliki/CQRS.html)（Martin Fowler, 2011-07-14） — 提唱側による「大半のケースはうまくいっていない」の一次記述。適用は境界づけられたコンテキストなど一部に限れという処方も同ページ
 
 > 上記の出典と数値は 2026-08-31 に本文照合済み。照合前の下調べでは、記事に存在しない数値が混ざっていた。
@@ -71,7 +68,7 @@ graph LR
 | **Presentation**   | ルーティング、バリデーション、レスポンス整形   | Hono, Zod       |
 
 > 📖 詳細: [docs/architecture.md](docs/architecture.md)
-> ⚠️ Infrastructure / Presentation 層は**現在未実装**（Phase 1 の #10-12 で実装予定）。進捗は [ロードマップ](docs/roadmap.md)。
+> ⚠️ Infrastructure / Presentation 層は**現在未実装**（Phase 1 の #10-12 で実装予定）。
 
 ## 🛠️ 技術スタック
 
@@ -120,13 +117,17 @@ pnpm dev
 
 ## 📝 開発コマンド
 
-コマンド一覧の正典は [CLAUDE.md](CLAUDE.md#commands)（二重管理を避けるため集約）。よく使うもの:
-
 ```bash
-pnpm dev          # 開発サーバー起動
-pnpm test         # 全テスト実行
-pnpm check        # lint + 自動修正
-pnpm tsc          # 型チェック（--noEmit）
+pnpm install              # 依存インストール
+docker compose up -d      # PostgreSQL 起動
+pnpm prisma migrate dev   # マイグレーション実行
+pnpm dev                  # 開発サーバー起動
+pnpm tsc                  # 型チェック（内部で tsc --noEmit）
+pnpm check                # lint + 自動修正（biome check --write）
+pnpm test                 # 全テスト（内部で vitest run）
+pnpm test <path>          # 単体テスト指定実行
+pnpm build                # TypeScript ビルド
+pnpm start                # ビルド後の本番サーバー起動
 ```
 
 ## 📂 ディレクトリ構成
@@ -144,24 +145,13 @@ prisma/
 ├── schema.prisma    # DB スキーマ定義
 └── migrations/      # マイグレーション履歴
 docs/
-├── learning-method.md   # 学習方法の正典（答え先出し・段階的な支援・確認課題）
-├── roadmap.md       # 学習ロードマップ（Phase 1〜3）
-├── handoff.md       # 現在地と次の一手（セッション引き継ぎ）
-├── architecture.md  # アーキテクチャ詳細
+├── architecture.md      # アーキテクチャ詳細
 ├── design-decisions.md  # 設計判断とトレードオフ
-├── guides/          # 実装ガイド（Issue 単位）
-└── learning-log/    # 学習ログ（Issue ごとの再説明・応用問題・利用した支援）
+└── branch-naming.md     # ブランチ命名規則
 ```
 
 ## 📚 設計ドキュメント
 
-- [学習方法](docs/learning-method.md) — 答え先出し、段階的なヒント、小さな応用問題、Phase確認課題（進め方の唯一の正典）
-- [学習ロードマップ](docs/roadmap.md) — Phase 1〜3 の学ぶ順序とゴール。Phase 3 は保留中
-- [検討メモ](docs/learning-plan-notes.md) — 到達点をどう決めたかの経緯、保留を解く条件、未確認のまま残していること
-- [引き継ぎ](docs/handoff.md) — 現在地と次の一手（作業を再開するときの入口）
 - [アーキテクチャ](docs/architecture.md) — オニオンアーキテクチャの詳細とリクエストフロー
 - [設計判断](docs/design-decisions.md) — 各技術選定のトレードオフ
 - [ブランチ命名規則](docs/branch-naming.md) — Git ブランチの命名ルール
-- [実装ガイド](docs/guides/) — Issue 単位のステップバイステップガイド
-- [学習ログ](docs/learning-log/) — Issue ごとの再説明、小さな応用問題、利用した支援の記録
-- [CLAUDE.md](CLAUDE.md) — コマンド・アーキテクチャ・テスト方針・指導役の振る舞いの正典。[AGENTS.md](AGENTS.md) は Codex 向けにこのファイルを指すだけの薄い入口

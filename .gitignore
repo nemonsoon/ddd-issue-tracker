@@ -19,3 +19,14 @@ logs/
 /generated/prisma
 
 .claude
+
+# 学習の記録（公開しない）
+/AGENTS.md
+/CLAUDE.md
+/.github/ISSUE_TEMPLATE/
+/docs/guides/
+/docs/learning-log/
+/docs/learning-method.md
+/docs/learning-plan-notes.md
+/docs/roadmap.md
+/docs/handoff.md
