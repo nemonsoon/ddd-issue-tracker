@@ -99,7 +99,7 @@ graph LR
 
 ```bash
 # 1. リポジトリをクローン
-git clone https://github.com/nuko-chan/ddd-issue-tracker.git
+git clone https://github.com/nemonsoon/ddd-issue-tracker.git
 cd ddd-issue-tracker
 
 # 2. 依存インストール
