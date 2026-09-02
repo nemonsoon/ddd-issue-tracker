@@ -57,6 +57,8 @@ graph LR
 | テスト | Vitest |
 | 静的検査 | Biome |
 
+Zod は Presentation 層の実装とあわせて導入する予定で、現時点では依存に含めていない。
+
 ## セットアップ
 
 前提: Node.js、pnpm、Docker
@@ -93,8 +95,6 @@ pnpm start                # ビルド済みの起動
 src/
 ├── domain/          エンティティ、Repository のインターフェース、ドメインエラー
 ├── usecase/         業務フロー（1ファイル1ユースケース）
-├── infra/           Prisma による Repository の実装（未実装）
-├── presentation/    Hono のコントローラ、Zod のスキーマ（未実装）
 └── main.ts          エントリポイント
 prisma/
 ├── schema.prisma    データベースのスキーマ定義
@@ -105,6 +105,8 @@ docs/
 └── branch-naming.md     ブランチの命名規則
 tests/                   Fake を用いたユースケースのテスト
 ```
+
+Infrastructure 層と Presentation 層のディレクトリはまだ無い。実装するときに `src/infra/` と `src/presentation/` を作る。
 
 ## ドキュメント
 
