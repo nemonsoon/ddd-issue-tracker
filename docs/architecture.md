@@ -1,5 +1,9 @@
 # アーキテクチャ
 
+[← README](../README.md)
+
+層の実装に入る前に読む。層ごとの責務と、リクエストがどの順で層を通るかを扱う。
+
 ## オニオンアーキテクチャ
 
 Domain を中心に据え、外側の層が内側のインターフェースに依存する（依存性逆転）。
@@ -32,30 +36,20 @@ graph TD
     Prisma --> DB
 ```
 
-## レイヤー責務
+## 層の責務
 
-| Layer              | 位置   | 責務                                             | 依存先                 |
+| 層                 | 位置   | 責務                                             | 依存先                 |
 | ------------------ | ------ | ------------------------------------------------ | ---------------------- |
 | **Domain**         | 最内側 | Entity型、Repository interface、ドメインエラー   | なし（純粋TypeScript） |
-| **UseCase**        | 中間   | ビジネスフロー調整、アプリケーションエラー（IssueNotFound等）、1ファイル1ユースケース | Domain                 |
-| **Infrastructure** | 外側   | DB通信、Repository interfaceの実装               | Domain, Prisma         |
+| **UseCase**        | 中間   | ビジネスフロー調整、アプリケーションエラー（`IssueNotFoundError` 等）、1ファイル1ユースケース | Domain                 |
+| **Infrastructure** | 外側   | データベースとの通信、Repository interfaceの実装 | Domain, Prisma         |
 | **Presentation**   | 外側   | HTTPルーティング、バリデーション、レスポンス整形 | UseCase, Zod           |
 
 ## 依存方向
 
-```mermaid
-graph LR
-    P[presentation] -->|depends on| U[usecase]
-    U -->|depends on| D[domain]
-    I[infra] -.->|implements| D
+依存の向きを表す図は [README](../README.md#アーキテクチャ) にある。
 
-    style D fill:#5319E7,color:#fff
-    style U fill:#1D76DB,color:#fff
-    style I fill:#D93F0B,color:#fff
-    style P fill:#FBCA04,color:#000
-```
-
-**核心原則**: Domain層は一切の外部依存を持たない。外側の層がDomainのインターフェースに依存する。DBやフレームワークの差し替えがドメインロジックに影響しない。
+**核心原則**: Domain層は一切の外部依存を持たない。外側の層がDomainのインターフェースに依存する。データベースやフレームワークの差し替えがドメインロジックに影響しない。
 
 ## リクエスト/レスポンスフロー
 

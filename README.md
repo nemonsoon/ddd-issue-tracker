@@ -108,9 +108,9 @@ tests/                   Fake を用いたユースケースのテスト
 
 ## ドキュメント
 
-- [アーキテクチャ](docs/architecture.md) — 層の責務とリクエストの流れ
-- [設計判断とトレードオフ](docs/design-decisions.md) — 各技術を選んだ理由と、採用しなかったもの
-- [ブランチの命名規則](docs/branch-naming.md) — ブランチ名の付け方
+- [アーキテクチャ](docs/architecture.md) — 層の責務とリクエストの流れ。層の実装に入る前に読む
+- [設計判断とトレードオフ](docs/design-decisions.md) — 各技術を選んだ理由と、採用しなかったもの。方針を変えたくなったときに読む
+- [ブランチの命名規則](docs/branch-naming.md) — ブランチ名の付け方。ブランチを切る前に読む
 
 ## ライセンス
 
