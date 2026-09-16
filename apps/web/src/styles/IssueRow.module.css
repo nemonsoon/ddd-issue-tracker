@@ -1,0 +1,24 @@
+.row {
+	cursor: pointer;
+	/* 選択したときに左の罫線を出す。色だけでは、どの行を見ているか弱い */
+	box-shadow: inset 3px 0 0 0 transparent;
+}
+
+.row[data-selected] {
+	background-color: var(--mantine-color-blue-light);
+	box-shadow: inset 3px 0 0 0 var(--mantine-primary-color-filled);
+}
+
+.number {
+	font-variant-numeric: tabular-nums;
+}
+
+.time {
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+.title {
+	display: block;
+	text-align: start;
+}

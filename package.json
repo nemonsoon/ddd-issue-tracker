@@ -1,30 +1,23 @@
 {
 	"name": "ddd-issue-tracker",
+	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "tsx watch src/main.ts",
-		"build": "tsc",
-		"start": "node dist/src/main.js",
+		"dev": "pnpm --filter api dev",
+		"dev:web": "pnpm --filter web dev",
+		"build": "pnpm --recursive build",
+		"build:api": "pnpm --filter api build",
+		"build:web": "pnpm --filter web build",
+		"start": "pnpm --filter api start",
+		"test": "pnpm --filter api test",
+		"tsc": "pnpm --recursive tsc",
+		"tsc:api": "pnpm --filter api tsc",
+		"tsc:web": "pnpm --filter web tsc",
 		"check": "biome check --write",
-		"tsc": "tsc --noEmit",
-		"test": "vitest run"
-	},
-	"dependencies": {
-		"@hono/node-server": "^1.19.14",
-		"@prisma/adapter-pg": "^7.7.0",
-		"@prisma/client": "^7.7.0",
-		"dotenv": "^17.4.2",
-		"hono": "^4.12.14",
-		"pg": "^8.20.0",
-		"prisma": "^7.7.0"
+		"prisma": "pnpm --filter api exec prisma"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.12",
-		"@types/node": "^20.11.17",
-		"@types/pg": "^8.20.0",
-		"lefthook": "^2.1.6",
-		"tsx": "^4.7.1",
-		"typescript": "^5.8.3",
-		"vitest": "^4.1.4"
+		"lefthook": "^2.1.6"
 	}
 }

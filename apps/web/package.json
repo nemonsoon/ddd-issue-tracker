@@ -1,0 +1,31 @@
+{
+	"name": "web",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"tsc": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@mantine/core": "^9.6.1",
+		"@mantine/form": "^9.6.1",
+		"@mantine/hooks": "^9.6.1",
+		"@mantine/notifications": "^9.6.1",
+		"@tanstack/react-router": "^1.170.36",
+		"lucide-react": "^1.46.0",
+		"react": "^19.3.0",
+		"react-dom": "^19.3.0"
+	},
+	"devDependencies": {
+		"@tanstack/router-plugin": "^1.168.38",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
+		"@vitejs/plugin-react": "^6.1.1",
+		"postcss": "^8.5.6",
+		"postcss-preset-mantine": "^1.18.0",
+		"typescript": "^5.9.3",
+		"vite": "^8.3.0"
+	}
+}

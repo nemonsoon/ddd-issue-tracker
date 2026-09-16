@@ -1,0 +1,32 @@
+/*
+ * 色、余白、文字サイズ、角丸、太さ、行間はすべて Mantine の既定を使う。
+ * このファイルが持つのは、Mantine に対応する目盛りが無い骨格の寸法だけ。
+ *
+ * 例外: メディアクエリの区切り幅はカスタムプロパティを使えないため、各 CSS へ直接書く。
+ * 値は Mantine の breakpoint と同じ目盛りを使う。
+ *   xs 36em / sm 48em / md 62em / lg 75em / xl 88em
+ */
+:root {
+	/* 画面の骨格 */
+	--app-topbar-height: 56px;
+	--app-aside-min: 280px;
+	--app-content-max: 1200px;
+	--app-gutter: 40px;
+	--app-column-gap: 48px;
+
+	/* アイコンと、その隣の文字とのすき間。Mantine の xs（10px）では離れすぎる */
+	--app-icon-gap: 6px;
+}
+
+@media (max-width: 62em) {
+	:root {
+		--app-gutter: 24px;
+		--app-column-gap: 32px;
+	}
+}
+
+@media (max-width: 36em) {
+	:root {
+		--app-gutter: 16px;
+	}
+}

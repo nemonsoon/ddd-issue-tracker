@@ -1,0 +1,33 @@
+.panel {
+	padding: var(--mantine-spacing-md);
+	border: 1px solid var(--mantine-color-gray-3);
+	border-radius: var(--mantine-radius-default);
+	background-color: var(--mantine-color-white);
+}
+
+.heading {
+	display: flex;
+	align-items: center;
+	gap: var(--app-icon-gap);
+}
+
+.tabular {
+	font-variant-numeric: tabular-nums;
+}
+
+.focusList {
+	display: flex;
+	flex-direction: column;
+	gap: var(--mantine-spacing-sm);
+}
+
+.focusItem {
+	display: grid;
+	grid-template-columns: 24px minmax(0, 1fr);
+	gap: var(--mantine-spacing-xs);
+	align-items: start;
+}
+
+.check {
+	color: var(--mantine-color-gray-4);
+}

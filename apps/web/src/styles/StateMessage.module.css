@@ -1,0 +1,26 @@
+.panel {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: var(--mantine-spacing-xl) var(--mantine-spacing-md);
+	border: 1px dashed var(--mantine-color-gray-4);
+	border-radius: var(--mantine-radius-default);
+}
+
+.icon {
+	margin-bottom: var(--mantine-spacing-sm);
+	color: var(--mantine-color-dimmed);
+}
+
+.panel[data-tone="alert"] .icon {
+	color: var(--mantine-color-red-6);
+}
+
+.description {
+	max-width: 512px;
+}
+
+.action {
+	margin-top: var(--mantine-spacing-md);
+}

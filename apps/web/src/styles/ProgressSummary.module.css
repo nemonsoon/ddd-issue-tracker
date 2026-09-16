@@ -1,0 +1,10 @@
+.summary {
+	display: flex;
+	align-items: center;
+	gap: var(--mantine-spacing-xs);
+}
+
+.caption {
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
