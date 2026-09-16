@@ -21,7 +21,7 @@ logs/
 .DS_Store
 
 
-/generated/prisma
+apps/api/generated/
 
 .claude
 
@@ -35,3 +35,6 @@ logs/
 /docs/learning-plan-notes.md
 /docs/roadmap.md
 /docs/handoff.md
+
+# frontend build
+apps/web/.vite/

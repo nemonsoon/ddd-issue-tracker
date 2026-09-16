@@ -1,0 +1,57 @@
+.shell {
+	min-height: 100vh;
+}
+
+.topbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--mantine-spacing-md);
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	height: var(--app-topbar-height);
+	padding-inline: var(--app-gutter);
+	border-bottom: 1px solid var(--mantine-color-gray-3);
+	background-color: var(--mantine-color-white);
+}
+
+.source {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--app-icon-gap);
+	font-size: var(--mantine-font-size-sm);
+}
+
+.source:hover {
+	color: var(--mantine-color-anchor);
+}
+
+/* 狭い画面ではリポジトリ名が入らないため、アイコンだけを残す */
+@media (max-width: 36em) {
+	.sourceName {
+		display: none;
+	}
+}
+
+.body {
+	padding: var(--app-gutter);
+}
+
+/* 本文と右の列は 2 対 1。一覧のほうが桁数が多いため、等分にはしない */
+.content {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(var(--app-aside-min), 1fr);
+	column-gap: var(--app-column-gap);
+	align-items: start;
+	max-width: var(--app-content-max);
+	margin-inline: auto;
+}
+
+/* 幅が足りなくなったら、右の列を本文の下へ移す */
+@media (max-width: 75em) {
+	.content {
+		grid-template-columns: minmax(0, 1fr);
+		row-gap: var(--app-gutter);
+	}
+}

@@ -1,0 +1,5 @@
+.wrapper {
+	max-width: 480px;
+	margin: 0 auto;
+	padding: var(--mantine-spacing-xl) var(--app-gutter);
+}

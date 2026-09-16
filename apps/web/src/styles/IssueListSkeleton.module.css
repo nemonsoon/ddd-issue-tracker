@@ -1,0 +1,19 @@
+.row {
+	display: grid;
+	grid-template-columns: 56px minmax(0, 1fr) 132px 96px;
+	align-items: center;
+	gap: var(--mantine-spacing-lg);
+	padding: var(--mantine-spacing-md) var(--mantine-spacing-sm);
+	border-bottom: 1px solid var(--mantine-color-gray-3);
+}
+
+.row:last-child {
+	border-bottom: 0;
+}
+
+/* Mantine の Skeleton は動きの抑制設定を見ないため、ここで止める */
+@media (prefers-reduced-motion: reduce) {
+	.row :global(.mantine-Skeleton-root)::after {
+		animation: none;
+	}
+}

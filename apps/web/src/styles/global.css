@@ -1,0 +1,25 @@
+/*
+ * Mantine の baseline は box-sizing と body の余白しか消さない。
+ * 見出しとリストのブラウザ既定は残るため、ここで一度だけ落とす。
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+dl,
+dd {
+	margin: 0;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+body {
+	background-color: var(--mantine-color-gray-0);
+}
