@@ -8,22 +8,21 @@
 公開サーバーへのデプロイはしていない。
 画面を動かすには、[セットアップ](#セットアップ)の手順でローカルに起動する。
 
-## 実装状況
+## できること
 
-4つの層をすべて実装し、課題の一覧、状態での絞り込み、課題の作成をブラウザから操作できる。
+バックエンドと画面の両方が動き、課題の一覧・絞り込み・作成をブラウザから操作できる。
 
-| 層 | 状態 |
-| --- | --- |
-| Domain | 実装済み |
-| UseCase | 実装済み（作成・取得・一覧・更新・削除） |
-| Infrastructure | 実装済み（Prisma による Repository 実装） |
-| Presentation | 実装済み（一覧と作成の HTTP API） |
-
-HTTP から到達できるのは一覧と作成の2本で、取得・更新・削除はユースケースまでの実装にとどめている。
+| | バックエンド | 画面 |
+| --- | --- | --- |
+| 一覧 | `GET /api/issues` が更新日時の新しい順に返す | 表に並べる。行を選ぶと右の列がその課題の詳細に入れ替わる |
+| 絞り込み | `?status=open` で状態を指定する | すべて、Open、Closed を切り替える。状態は URL に持つため再読み込みしても戻らない |
+| 作成 | `POST /api/issues` が題名と説明を受け取る | 「New issue」から登録する。題名が空なら送信せずその場で伝える |
+| 進捗 | — | 完了率を見出し帯に示す。母数は絞り込みに関係なく全件で数える |
+| 取得・更新・削除 | ユースケースまで実装。HTTP には未公開 | — |
 
 残りの作業は [Issues](https://github.com/nemonsoon/ddd-issue-tracker/issues) で管理している。
 
-## アーキテクチャ
+## 設計
 
 依存の向きは常に外から内。
 Infrastructure 層は Domain 層のインターフェースを実装する側に立ち、内側が外側を参照しない。
@@ -45,39 +44,7 @@ graph LR
     style W fill:#EEEEEE,color:#000
 ```
 
-| 層 | 責務 | 主な技術 |
-| --- | --- | --- |
-| Domain | エンティティ、Repository のインターフェース、ドメインエラー | 標準の TypeScript のみ |
-| UseCase | 業務フローの調整（1ファイル1ユースケース） | — |
-| Infrastructure | Repository の実装、データベースとの通信 | Prisma |
-| Presentation | ルーティング、入力検証、レスポンスの整形 | Hono、Zod |
-| Web UI | 画面表示、画面遷移、入力 | React、TanStack Router、Mantine |
-
-層ごとの責務の詳細は [アーキテクチャ](docs/architecture.md)、各技術を選んだ理由は [設計判断とトレードオフ](docs/design-decisions.md) にある。
-
-## HTTP API
-
-| メソッドとパス | 用途 | 成功時の応答 |
-| --- | --- | --- |
-| `GET /api/issues` | 課題の一覧を取得する | 200、課題の配列 |
-| `GET /api/issues?status=open` | 指定した状態の課題だけを取得する | 200、課題の配列 |
-| `POST /api/issues` | 課題を作成する | 201、作成した課題 |
-| `GET /health` | 稼働確認 | 200、`{"status":"ok"}` |
-
-日時は ISO 8601 形式の文字列で返す。
-入力の形式が正しくないときは 400 を返し、本文の `error` に理由を、`details` に該当する項目を入れる。
-
-## 画面
-
-画面ができるのは次の4つである。
-
-- 課題を表で並べる。行を選ぶと、右の列がその課題の詳細に入れ替わる
-- すべて、Open、Closed で絞り込む。絞り込みと選択中の課題は URL に持たせるため、再読み込みしても状態が戻らない
-- 完了率を見出し帯に示す。母数は絞り込みに関係なく全件で数える
-- 「New issue」から課題を作成する
-
-画面の色、余白、文字サイズ、角丸は Mantine の既定をそのまま使う。
-学習の主眼はバックエンドにあるため、画面には独自の意匠を持たせていない。
+層ごとの責務、HTTP API の一覧、ディレクトリ構成は [アーキテクチャ](docs/architecture.md)、各技術を選んだ理由は [設計判断とトレードオフ](docs/design-decisions.md) にある。
 
 ## 技術スタック
 
@@ -95,6 +62,9 @@ graph LR
 | アイコン | Lucide React |
 | テスト | Vitest |
 | 静的検査 | Biome |
+
+画面の色、余白、文字サイズ、角丸は Mantine の既定をそのまま使う。
+設計上の関心は層の分離とドメインの独立にあり、画面の意匠には投資していない。
 
 ## セットアップ
 
@@ -127,70 +97,13 @@ pnpm build
 pnpm start     # http://localhost:3000 で画面と API の両方を配る
 ```
 
-## 開発コマンド
-
-ルートのコマンドはワークスペース全体に向く。
-
-```bash
-pnpm dev                  # バックエンドの開発サーバー
-pnpm dev:web              # 画面の開発サーバー
-pnpm build                # バックエンドと画面の両方をビルド
-pnpm build:api            # バックエンドだけビルド
-pnpm build:web            # 画面だけビルド
-pnpm start                # ビルド済みの起動
-pnpm test                 # テスト実行
-pnpm tsc                  # バックエンドと画面の型検査（tsc --noEmit）
-pnpm tsc:api              # バックエンドだけ型検査
-pnpm tsc:web              # 画面だけ型検査
-pnpm check                # 静的検査と自動修正（biome check --write）
-pnpm prisma <サブコマンド>  # apps/api の Prisma を実行（例: pnpm prisma migrate dev）
-```
-
-ファイルを指定してテストを実行するときは、`apps/api` を基準にパスを渡す。
-
-```bash
-pnpm --filter api test tests/usecase/issue/createIssue.test.ts
-```
-
-## ディレクトリ構成
-
-ルートは pnpm のワークスペースで、アプリケーションは `apps/` の下に並ぶ。
-
-```
-apps/
-├── api/                     バックエンド
-│   ├── src/
-│   │   ├── domain/          エンティティ、Repository のインターフェース、ドメインエラー
-│   │   ├── usecase/         業務フロー（1ファイル1ユースケース）
-│   │   ├── infra/           Prisma による Repository の実装
-│   │   ├── presentation/    HTTP ルーティング、入力検証、レスポンスの整形
-│   │   ├── container.ts     Repository とユースケースの組み立て
-│   │   └── main.ts          エントリポイント
-│   ├── tests/
-│   │   ├── fakes/           Fake Repository
-│   │   ├── usecase/         Fake を用いたユースケースのテスト
-│   │   └── presentation/    HTTP API のテスト
-│   └── prisma/
-│       ├── schema.prisma    データベースのスキーマ定義
-│       └── migrations/      マイグレーション履歴
-└── web/                     画面
-    └── src/
-        ├── routes/          画面の経路（ファイル名がそのまま住所になる）
-        ├── components/      画面の部品
-        ├── styles/          CSS Modules と全体のスタイル
-        ├── lib/             API の呼び出しと日時の整形
-        └── constants.ts     画面で使う定数
-docs/
-├── images/              README で使う画面の写真
-├── architecture.md      アーキテクチャの詳細
-├── design-decisions.md  設計判断とトレードオフ
-└── branch-naming.md     ブランチの命名規則
-```
+そのほかのコマンドは [開発コマンド](docs/development.md) にある。
 
 ## ドキュメント
 
-- [アーキテクチャ](docs/architecture.md) — 層の責務とリクエストの流れ。層の実装に入る前に読む
+- [アーキテクチャ](docs/architecture.md) — 層の責務、リクエストの流れ、HTTP API、ディレクトリ構成。層の実装に入る前に読む
 - [設計判断とトレードオフ](docs/design-decisions.md) — 各技術を選んだ理由と、採用しなかったもの。方針を変えたくなったときに読む
+- [開発コマンド](docs/development.md) — 日々の開発で叩くコマンド。手を動かすときに引く
 - [ブランチの命名規則](docs/branch-naming.md) — ブランチ名の付け方。ブランチを切る前に読む
 
 ## ライセンス

@@ -52,8 +52,6 @@ graph TD
 
 ## 依存方向
 
-依存の向きを表す図は [README](../README.md#アーキテクチャ) にある。
-
 **核心原則**: Domain層は一切の外部依存を持たない。外側の層がDomainのインターフェースに依存する。データベースやフレームワークの差し替えがドメインロジックに影響しない。
 
 ## 画面の位置
@@ -90,4 +88,59 @@ sequenceDiagram
     R-->>U: Domain Entity
     U-->>P: Entity or Error (アプリ/ドメイン)
     P-->>C: HTTP Response (JSON)
+```
+
+## HTTP API
+
+Presentation 層が外へ見せている経路。
+
+| メソッドとパス | 用途 | 成功時の応答 |
+| --- | --- | --- |
+| `GET /api/issues` | 課題の一覧を取得する | 200、課題の配列 |
+| `GET /api/issues?status=open` | 指定した状態の課題だけを取得する | 200、課題の配列 |
+| `POST /api/issues` | 課題を作成する | 201、作成した課題 |
+| `GET /health` | 稼働確認 | 200、`{"status":"ok"}` |
+
+日時は ISO 8601 形式の文字列で返す。
+入力の形式が正しくないときは 400 を返し、本文の `error` に理由を、`details` に該当する項目を入れる。
+
+一覧は更新日時の降順で返す。
+画面が「更新日」の桁で並びを説明するため、作成日時順にすると桁が並びについて嘘をつくことになる。
+
+取得・更新・削除はユースケースまでの実装で、HTTP には公開していない。
+
+## ディレクトリ構成
+
+ルートは pnpm のワークスペースで、アプリケーションは `apps/` の下に並ぶ。
+
+```
+apps/
+├── api/                     バックエンド
+│   ├── src/
+│   │   ├── domain/          エンティティ、Repository のインターフェース、ドメインエラー
+│   │   ├── usecase/         業務フロー（1ファイル1ユースケース）
+│   │   ├── infra/           Prisma による Repository の実装
+│   │   ├── presentation/    HTTP ルーティング、入力検証、レスポンスの整形
+│   │   ├── container.ts     Repository とユースケースの組み立て
+│   │   └── main.ts          エントリポイント
+│   ├── tests/
+│   │   ├── fakes/           Fake Repository
+│   │   ├── usecase/         Fake を用いたユースケースのテスト
+│   │   └── presentation/    HTTP API のテスト
+│   └── prisma/
+│       ├── schema.prisma    データベースのスキーマ定義
+│       └── migrations/      マイグレーション履歴
+└── web/                     画面
+    └── src/
+        ├── routes/          画面の経路（ファイル名がそのまま住所になる）
+        ├── components/      画面の部品
+        ├── styles/          CSS Modules と全体のスタイル
+        ├── lib/             API の呼び出しと日時の整形
+        └── constants.ts     画面で使う定数
+docs/
+├── images/              README で使う画面の写真
+├── architecture.md      この文書
+├── design-decisions.md  設計判断とトレードオフ
+├── development.md       開発コマンド
+└── branch-naming.md     ブランチの命名規則
 ```
