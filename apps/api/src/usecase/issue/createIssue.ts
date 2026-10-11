@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import type { Issue } from "../../domain/issue/entity.js";
-import { InvalidIssueTitleError } from "../../domain/issue/errors.js";
 import type { IssueRepository } from "../../domain/issue/repository.js";
+import { parseIssueTitle } from "../../domain/issue/title.js";
 
 export class CreateIssueUsecase {
 	constructor(private repository: IssueRepository) {}
@@ -10,8 +10,7 @@ export class CreateIssueUsecase {
 		title: string;
 		description?: string;
 	}): Promise<Issue> {
-		const title = input.title.trim();
-		if (!title) throw new InvalidIssueTitleError();
+		const title = parseIssueTitle(input.title);
 
 		const newIssue: Issue = {
 			id: randomUUID(),
