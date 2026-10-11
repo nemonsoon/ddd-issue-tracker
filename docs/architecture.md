@@ -45,7 +45,7 @@ graph TD
 
 | 層                 | 位置   | 責務                                             | 依存先                 |
 | ------------------ | ------ | ------------------------------------------------ | ---------------------- |
-| **Domain**         | 最内側 | Entity型、Repository interface、ドメインエラー   | なし（純粋TypeScript） |
+| **Domain**         | 最内側 | Entity型、Repository interface、業務規則の関数、ドメインエラー | なし（純粋TypeScript） |
 | **UseCase**        | 中間   | ビジネスフロー調整、アプリケーションエラー（`IssueNotFoundError` 等）、1ファイル1ユースケース | Domain                 |
 | **Infrastructure** | 外側   | データベースとの通信、Repository interfaceの実装 | Domain, Prisma         |
 | **Presentation**   | 外側   | HTTPルーティング、バリデーション、レスポンス整形 | UseCase, Zod           |
@@ -117,7 +117,7 @@ Presentation 層が外へ見せている経路。
 apps/
 ├── api/                     バックエンド
 │   ├── src/
-│   │   ├── domain/          エンティティ、Repository のインターフェース、ドメインエラー
+│   │   ├── domain/          エンティティ、Repository のインターフェース、業務規則の関数、ドメインエラー
 │   │   ├── usecase/         業務フロー（1ファイル1ユースケース）
 │   │   ├── infra/           Prisma による Repository の実装
 │   │   ├── presentation/    HTTP ルーティング、入力検証、レスポンスの整形

@@ -102,8 +102,17 @@ Next.js はさらに、HTTP の入り口を自分の中に置く書き方（Rout
 Presentation 層の Zod が確かめるのは、受け取った値の「形」だけにする。
 題名が文字列か、`status` が扱える値かを見る。
 
-題名が空であってはならないという業務規則は、Domain 層の `InvalidIssueTitleError` が持つ。
+題名が空であってはならないという業務規則は、Domain 層の関数 `parseIssueTitle` が持つ。
+この関数は前後の空白を除き、残りが空なら `InvalidIssueTitleError` を投げる。
 Zod 側に `min(1)` を重ねると同じ規則が2か所に散り、片方だけ変えたときに食い違う。
+
+同じ理由で、規則を UseCase ごとに書くこともしない。
+作成と更新の UseCase は、どちらも `parseIssueTitle` を通して題名を受け取る。
+
+題名を値オブジェクトにする案は採っていない。
+値オブジェクトにすれば、判定を通していない題名を型検査が止めるが、Entity の型と Infrastructure 層の変換まで変更が広がる。
+題名の型は `string` のままなので、新しい UseCase が `parseIssueTitle` を呼び忘れても型検査は止めない。
+値オブジェクトへの置き換えは [Issue #5](https://github.com/nemonsoon/ddd-issue-tracker/issues/5) で扱う。
 
 Presentation 層は `InvalidIssueTitleError` を捕まえて 400 へ変換する。
 規則そのものは内側に1つだけ置き、外側はその結果を HTTP の言葉に翻訳する役割にとどめる。

@@ -1,7 +1,7 @@
 import type { Issue } from "../../domain/issue/entity.js";
-import { InvalidIssueTitleError } from "../../domain/issue/errors.js";
 import type { IssueRepository } from "../../domain/issue/repository.js";
 import type { IssueStatus } from "../../domain/issue/status.js";
+import { parseIssueTitle } from "../../domain/issue/title.js";
 import { IssueNotFoundError } from "./errors.js";
 
 export class UpdateIssueUseCase {
@@ -16,12 +16,8 @@ export class UpdateIssueUseCase {
 		const existing = await this.repository.findById(input.id);
 		if (!existing) throw new IssueNotFoundError(input.id);
 
-		// 作成時と同じ不変条件を更新でも守る
-		let title = existing.title;
-		if (input.title !== undefined) {
-			title = input.title.trim();
-			if (!title) throw new InvalidIssueTitleError();
-		}
+		const title =
+			input.title === undefined ? existing.title : parseIssueTitle(input.title);
 
 		const updated: Issue = {
 			...existing,
