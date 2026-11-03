@@ -35,6 +35,7 @@ apps/api/generated/
 /docs/learning-plan-notes.md
 /docs/roadmap.md
 /docs/handoff.md
+/docs/_archive/
 
 # frontend build
 apps/web/.vite/
