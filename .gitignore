@@ -20,22 +20,8 @@ logs/
 # misc
 .DS_Store
 
-
+# generated Prisma client
 apps/api/generated/
-
-.claude
-
-# 学習の記録（公開しない）
-/AGENTS.md
-/CLAUDE.md
-/.github/ISSUE_TEMPLATE/
-/docs/guides/
-/docs/learning-log/
-/docs/learning-method.md
-/docs/learning-plan-notes.md
-/docs/roadmap.md
-/docs/handoff.md
-/docs/_archive/
 
 # frontend build
 apps/web/.vite/
