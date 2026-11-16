@@ -13,7 +13,7 @@
 		"@hono/node-server": "^1.19.19",
 		"@prisma/adapter-pg": "^7.10.1",
 		"@prisma/client": "^7.10.1",
-		"dotenv": "^17.4.2",
+		"dotenv": "^18.0.10",
 		"hono": "^4.13.18",
 		"pg": "^8.23.1",
 		"prisma": "^7.10.1",
