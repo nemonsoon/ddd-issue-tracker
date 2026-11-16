@@ -36,9 +36,9 @@ pnpm --filter api test tests/usecase/issue/createIssue.test.ts
 
 lefthook が2か所で検査を挟む。
 
-| 契機 | 実行される内容 |
-| --- | --- |
+| 契機         | 実行される内容                                |
+| ------------ | --------------------------------------------- |
 | `pre-commit` | `pnpm check`（対象は `*.{js,ts,jsx,tsx,md}`） |
-| `pre-push` | `pnpm tsc` と `pnpm test`（並列） |
+| `pre-push`   | `pnpm tsc` と `pnpm test`（並列）             |
 
 手元で同じ検査を先に通しておくと、push で弾かれない。
