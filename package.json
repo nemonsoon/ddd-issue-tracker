@@ -18,7 +18,7 @@
 		"prisma": "pnpm --filter api exec prisma"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.6.8",
+		"@biomejs/biome": "2.6.9",
 		"lefthook": "^2.2.2"
 	}
 }
